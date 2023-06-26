@@ -8,11 +8,21 @@
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
+#include "player.h"
+#include "DebugCamera.h"
+
 
 /// <summary>
 /// ゲームシーン
 /// </summary>
 class GameScene {
+	Player* player_ = nullptr;
+
+	// スプライト
+	Sprite* sprite_ = nullptr;
+
+	////ビュープロジェクション
+	// ViewProjection viewProjection_;
 
 public: // メンバ関数
 	/// <summary>
@@ -40,10 +50,27 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-private: // メンバ変数
+    private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
+
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0;
+
+	// モデル
+	Model* model_;
+
+	// カメラ
+	ViewProjection viewProjection_;
+
+	//デバッグカメラ
+	bool isDebugCameraActive_ = false;
+	DebugCamera* debugCamera_ = nullptr;
+
+	WorldTransform worldTransform_;
+
+
 
 	/// <summary>
 	/// ゲームシーン用

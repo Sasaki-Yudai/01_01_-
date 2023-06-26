@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Matrix4x4.h"
-#include "Vector3.h"
+
 #include <d3d12.h>
 #include <wrl.h>
 
@@ -14,6 +13,7 @@ struct ConstBufferDataWorldTransform {
 /// ワールド変換データ
 /// </summary>
 struct WorldTransform {
+
 	// 定数バッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> constBuff_;
 	// マッピング済みアドレス
@@ -42,7 +42,8 @@ struct WorldTransform {
 	/// </summary>
 	void Map();
 	/// <summary>
-	/// 行列を転送する
+	/// 行列を計算、転送する
 	/// </summary>
 	void TransferMatrix();
+	void UpdateMatrix();
 };
