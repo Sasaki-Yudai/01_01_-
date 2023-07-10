@@ -17,14 +17,14 @@ class Player {
 	void Attack(Vector3& position);
 
 public:
-	//<summry>
+	//<summary>
 	// 初期化
-	//</summry>
+	//</summary>
 	void Initialize(Model* model_, uint32_t textureHndle);
 
-	//<summry>
+	//<summary>
 	// 更新
-	//</summry>
+	//</summary>
 	void Update();
 
 	//<summry>
@@ -45,10 +45,4 @@ private:
 	uint32_t textureHandle_ = 0u;
 
 	Input* input_ = nullptr;
-
-	struct vector3 {
-		float X;
-		float Y;
-		float Z;
-	};
 };

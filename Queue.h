@@ -1,14 +1,14 @@
-#pragma once
+ï»¿
 
 #include "Multiply.h"
 
-// À•WˆÚ“®(ƒxƒNƒgƒ‹‚Ì‰ÁZ)
+// åº§æ¨™ç§»å‹•(ãƒ™ã‚¯ãƒˆãƒ«ã®åŠ ç®—)
 
 //	vector3 result;
 
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vector3& translate) {
 
-	// ƒXƒP[ƒŠƒ“ƒOs—ñ
+	// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°è¡Œåˆ—
 	Matrix4x4 matScale{0};
 
 	matScale.m[0][0] = scale.x;
@@ -17,7 +17,7 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vecto
 
 	matScale.m[3][3] = 1;
 
-	// X²‰ñ“]‚Ü‚í‚è‚Ì‰ñ“]
+	// Xè»¸å›è»¢ã¾ã‚ã‚Šã®å›è»¢
 	Matrix4x4 matRotX = {0};
 
 	matRotX.m[0][0] = 1;
@@ -27,7 +27,7 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vecto
 	matRotX.m[2][2] = cosf(rot.x);
 	matRotX.m[3][3] = 1;
 
-	// Y²‚Ü‚í‚è‚Ì‰ñ“]
+	// Yè»¸ã¾ã‚ã‚Šã®å›è»¢
 	Matrix4x4 matRotY = {0};
 	matRotY.m[0][0] = cosf(rot.y);
 	matRotY.m[1][1] = 1;
@@ -36,7 +36,7 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vecto
 	matRotY.m[2][2] = cosf(rot.y);
 	matRotY.m[3][3] = 1;
 
-	// Z²‚Ü‚í‚è‚Ì‰ñ“]
+	// Zè»¸ã¾ã‚ã‚Šã®å›è»¢
 	Matrix4x4 matRotZ = {0};
 	matRotZ.m[0][0] = cosf(rot.z);
 	matRotZ.m[1][0] = sinf(rot.z);
@@ -47,7 +47,7 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vecto
 
 	Matrix4x4 matRot = Multiply(Multiply(matRotZ, matRotX), matRotY);
 
-	// •½sˆÚ“®s—ñ
+	// å¹³è¡Œç§»å‹•è¡Œåˆ—
 	// TransferMatrix();
 
 	Matrix4x4 matTrans = {0};
@@ -75,3 +75,5 @@ Vector3 Add(const Vector3 v1, const Vector3 v2) {
 
 	return result;
 };
+
+Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
