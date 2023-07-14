@@ -2,7 +2,6 @@
 #include "ImGuiManager.h"
 #include "Queue.h"
 #include "makeAffine.h"
-#include <Model.h>
 #include <cassert>
 #include <math.h>
 
@@ -82,23 +81,23 @@ void Player::Update() {
 
 
 	// 移動ベクトル
-	Vector3 move = {0, 0, 0};
+	Vector3 playerMove = {0, 0, 0};
 
 	// キャラクターの移動速度
-	const float kCharacterSpeed = 0.2f;
+	const float kPlayerSpeed = 0.2f;
 
 	// 押した方向で移動ベクトルを変更(左右)
 	if (input_->PushKey(DIK_LEFT)) {
-		move.x -= kCharacterSpeed;
+		playerMove.x -= kPlayerSpeed;
 	} else if (input_->PushKey(DIK_RIGHT)) {
-		move.x += kCharacterSpeed;
+		playerMove.x += kPlayerSpeed;
 	}
 
 	// 押した方向でベクトルを変更
 	if (input_->PushKey(DIK_UP)) {
-		move.y += kCharacterSpeed;
+		playerMove.y += kPlayerSpeed;
 	} else if (input_->PushKey(DIK_DOWN)) {
-		move.y -= kCharacterSpeed;
+		playerMove.y -= kPlayerSpeed;
 	}
 
 	//	キャラクターの座標を画面表示する処理
@@ -142,7 +141,7 @@ void Player::Update() {
 		bullet->Update();
 	}
 
-	worldTransform_.translation_ = Add(worldTransform_.translation_, move);
+	worldTransform_.translation_ = Add(worldTransform_.translation_, playerMove);
 
 	worldTransform_.matWorld_ = MakeAffineMatrix(
 	    worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);

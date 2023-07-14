@@ -10,6 +10,7 @@ GameScene::~GameScene() {
 	delete model_;
 	delete debugCamera_;
 	delete player_;
+	delete enemy_;
 }
 
 void GameScene::Initialize() {
@@ -20,9 +21,12 @@ void GameScene::Initialize() {
 
 	// テクスチャ読込
 	textureHandle_ = TextureManager::Load("AL_player.png");
+	textureHandle3_ = TextureManager::Load("AL3_Enemy.png");
 
 	// スプライトの生成
 	sprite_ = Sprite::Create(textureHandle_, {100, 50});
+
+	worldTransform_.Initialize();
 
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
@@ -30,12 +34,13 @@ void GameScene::Initialize() {
 	model_ = Model::Create();
 
 	player_ = new Player();
-
+	enemy_ = new Enemy();
 
 	//デバッグカメラ
 	debugCamera_ = new DebugCamera(1280, 720);
 
 	player_->Initialize(model_, textureHandle_);
+	enemy_->Initialize(model_, textureHandle3_);
 
 	//軸方向表示の有効
 	AxisIndicator::GetInstance()->SetVisible(true);
@@ -46,6 +51,7 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 	player_->Update();
+	enemy_->Update();
 	debugCamera_->Update();
 
 	#ifdef _DEBUG
@@ -97,6 +103,7 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	player_->Draw(viewProjection_);
+	enemy_->Draw(viewProjection_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
