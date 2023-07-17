@@ -19,7 +19,8 @@ class GameScene {
 	Player* player_ = nullptr;
 	Enemy* enemy_ = nullptr;
 	// スプライト
-	Sprite* sprite_ = nullptr;
+	Sprite* playerSprite_ = nullptr;
+	Sprite* enemySprite_ = nullptr;
 
 	////ビュープロジェクション
 	// ViewProjection viewProjection_;

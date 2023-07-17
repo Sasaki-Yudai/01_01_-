@@ -33,4 +33,15 @@ private:
 	Model* model_ = nullptr;
 	uint32_t textureHandle3_ = 0u;
 	ViewProjection viewprojection_;
+
+
+	//行動フェーズ
+	enum class Phase {
+		Approach,
+		Leave,
+	}; 
+	//フェーズ
+	Phase phase_ = Enemy::Phase::Approach;
+
 };
+

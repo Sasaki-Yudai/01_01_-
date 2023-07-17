@@ -6,11 +6,12 @@
 GameScene::GameScene() { }
 
 GameScene::~GameScene() {
-	delete sprite_;
+	delete playerSprite_;
 	delete model_;
 	delete debugCamera_;
 	delete player_;
 	delete enemy_;
+	delete enemySprite_;
 }
 
 void GameScene::Initialize() {
@@ -24,7 +25,8 @@ void GameScene::Initialize() {
 	textureHandle3_ = TextureManager::Load("AL3_Enemy.png");
 
 	// スプライトの生成
-	sprite_ = Sprite::Create(textureHandle_, {100, 50});
+	playerSprite_ = Sprite::Create(textureHandle_, {100, 50});
+	enemySprite_ = Sprite::Create(textureHandle3_, {100, 50});
 
 	worldTransform_.Initialize();
 
